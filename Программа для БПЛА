@@ -1,0 +1,172 @@
+-- переменная текущего состояния
+local curr_state = "_GEO_TAKEOFF_1"
+
+
+-- таблица функций, вызываемых в зависимости от состояния
+action = {
+	["_GEO_TAKEOFF_1"] = function (x) 
+
+		ap.push(Ev.MCE_PREFLIGHT)
+		sleep(2)
+		ap.push(Ev.MCE_TAKEOFF)
+
+		-- переход в следующее состояние
+		curr_state = "_GO_TO_POINT_1"
+	end,
+	["_GO_TO_POINT_1"] = function (x) 
+		ap.goToLocalPoint(3.85, 3.03, 1.5, 0.9)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_1"
+	end,
+	["_PIONEER_YAW_1"] = function (x) 
+		ap.updateYaw((0 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(3.85, 3.65, 1.5, 0.62)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_2"
+	end,
+	["_PIONEER_YAW_2"] = function (x) 
+		ap.updateYaw((90 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(4.87, 3.62, 1.5, 1.02)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_3"
+	end,
+	["_PIONEER_YAW_3"] = function (x) 
+		ap.updateYaw((135 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(5.33, 3.21, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_4"
+	end,
+	["_PIONEER_YAW_4"] = function (x) 
+		ap.updateYaw((180 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(5.33, 2.52, 1.5, 0.7)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_5"
+	end,
+	["_PIONEER_YAW_5"] = function (x) 
+		ap.updateYaw((225 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(4.87, 2.1, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_6"
+	end,
+	["_PIONEER_YAW_6"] = function (x) 
+		ap.updateYaw((270 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(2.78, 2.13, 1.5, 2.1)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_7"
+	end,
+	["_PIONEER_YAW_7"] = function (x) 
+		ap.updateYaw((315 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(2.35, 2.55, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_8"
+	end,
+	["_PIONEER_YAW_8"] = function (x) 
+		ap.updateYaw((0 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(2.35, 3.24, 1.5, 0.7)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_9"
+	end,
+	["_PIONEER_YAW_9"] = function (x) 
+		ap.updateYaw((45 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(2.78, 3.71, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_10"
+	end,
+	["_PIONEER_YAW_10"] = function (x) 
+		ap.updateYaw((-90 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(2.34, 3.71, 1.5, 0.44)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_11"
+	end,
+	["_PIONEER_YAW_11"] = function (x) 
+		ap.updateYaw((280 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(1.9, 4.03, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_GO_TO_POINT_13"
+	end,
+	["_GO_TO_POINT_13"] = function (x) 
+		ap.goToLocalPoint(1.35, 4.14, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_12"
+	end,
+	["_PIONEER_YAW_12"] = function (x) 
+		ap.updateYaw((100 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(2.34, 3.71, 1.5, 1.3)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_13"
+	end,
+	["_PIONEER_YAW_13"] = function (x) 
+		ap.updateYaw((-45 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(1.9, 4.16, 1.5, 0.56)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_14"
+	end,
+	["_PIONEER_YAW_14"] = function (x) 
+		ap.updateYaw((0 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(1.9, 6.65, 1.5, 2.5)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_15"
+	end,
+	["_PIONEER_YAW_15"] = function (x) 
+		ap.updateYaw((180 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(1.9, 3.03, 1.5, 3.7)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_16"
+	end,
+	["_PIONEER_YAW_16"] = function (x) 
+		ap.updateYaw((90 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.goToLocalPoint(3.85, 3.03, 1.5, 2)
+
+		-- переход в следующее состояние
+		curr_state = "_PIONEER_YAW_17"
+	end,
+	["_PIONEER_YAW_17"] = function (x) 
+		ap.updateYaw((0 / 180.0 * math.pi) % (2.0 * math.pi))
+		ap.push(Ev.MCE_LANDING)
+
+		-- переход в следующее состояние
+		curr_state = "_FINAL_NODE_1"
+	end,
+	["_FINAL_NODE_1"] = function (x) 
+		-- выключение двигателей и конец программы
+		ap.push(Ev.ENGINES_DISARM)
+		curr_state = "NONE"
+
+	end,
+}
+
+-- функция обработки событий, автоматически вызывается автопилотом
+function callback(event)
+	if (event == Ev.TAKEOFF_COMPLETE) then
+		action[curr_state]()
+	end
+
+	if (event == Ev.POINT_REACHED) then
+		action[curr_state]()
+	end
+
+	if (event == Ev.COPTER_LANDED) then
+		sleep(2)
+		action[curr_state]()
+	end
+end
+
+-- вызов функции из таблицы состояний, соответствующей первому состоянию
+action[curr_state]()
